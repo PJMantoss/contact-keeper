@@ -18,6 +18,7 @@ const Register = props => {
             setAlert(error, 'danger');
             clearErrors();
         }
+
     }, [error, isAuthenticated, props.history])
     
     const [user, setUser] = useState({
@@ -54,10 +55,16 @@ const Register = props => {
             <form onSubmit={onSubmit}>
                 <div className="form-group">
                     <label htmlFor="name">Name</label>
-                    <input type="text" name='name' value={name} onChange={onChange}/>
+                    <input 
+                       type="text" 
+                       name='name' 
+                       value={name} 
+                       onChange={onChange}
+                       required
+                       />
                 </div>
                 <div className="form-group">
-                    <label htmlFor="email">Email</label>
+                    <label htmlFor="email">Email Address</label>
                     <input type="email"
                             name='email'
                             value={email} 
@@ -82,11 +89,14 @@ const Register = props => {
                            required
                            minLength="6"/>
                 </div>
-                <input type='submit' value='Register' className='btn btn-primary btn-block'
-        />
+                <input 
+                   type='submit' 
+                   value='Register' 
+                   className='btn btn-primary btn-block'
+                />
             </form>
         </div>
-    )
-}
+    );
+};
 
 export default Register;

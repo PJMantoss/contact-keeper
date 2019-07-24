@@ -7,16 +7,17 @@ import AuthContext from '../../context/auth/authContext';
 const Home = () => {
     const authContext = useContext(AuthContext);
 
-    const useEffect(() => {
+    useEffect(() => {
         authContext.loadUser();
         //eslint-disable-next-line
     }, []);
-    return (
-        <div className="grid">
-            <div><ContactForm/></div>
-            <div><Contacts/></div>
-        </div>
-    )
-}
 
-export default Home
+    return (
+        <div className="grid-2">
+            <div><ContactForm/></div>
+            <div><ContactFilter/> <Contacts/></div>
+        </div>
+    );
+};
+
+export default Home;
