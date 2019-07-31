@@ -9,12 +9,12 @@ const { check, validationResult } = require('express-validator/check');
 // @route  GET api/auth
 // @desc  GET logged in user
 // @access Private
-router.get('/', auth, (req,res) => {
+router.get('/', auth, async (req,res) => {
     try {
         const user = await user.findById(req.user.id).select('-password');
         res.json(user);
 
-    } catch (error) {
+    } catch (err) {
         console.error(err.message);
         res.status(500).send('Server Error');
     }
@@ -54,7 +54,7 @@ async (req,res) => {
             user: {
                 id: user.id
             }
-        }
+        };
     
         jwt.sign(payload, config.get('jwtSecret'), {
             expiresIn: 360000
@@ -63,10 +63,11 @@ async (req,res) => {
             res.json({token});
         });
 
-    } catch (error) {
+    } catch (err) {
         console.error(err.message);
         res.status(500).send('Server Error');
     }
   }
+);
 
 module.exports = router;

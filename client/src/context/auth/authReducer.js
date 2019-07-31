@@ -48,4 +48,4 @@ import {
         default:
           return state;
       }
-  }
+  };

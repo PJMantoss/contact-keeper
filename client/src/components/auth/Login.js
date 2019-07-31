@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useContext } from 'react';
-import AlertContext from '../../context/alert/alertContext';
+import React, { useState, useContext, useEffect } from 'react';
 import AuthContext from '../../context/auth/authContext';
+import AlertContext from '../../context/alert/alertContext';
 
 const Login = props => {
     const alertContext = useContext(AlertContext);
@@ -13,14 +13,15 @@ const Login = props => {
       if(isAuthenticated){
           props.history.push('/');
       }
+
       if(error === 'Invalid Credentials'){
           setAlert(error, 'danger');
           clearErrors();
       }
+      // eslint-disable-next-line
   }, [error, isAuthenticated, props.history])
 
     const [user, setUser] = useState({
-        name: '',
         email: '',
         password: ''
     });
@@ -47,21 +48,19 @@ const Login = props => {
             Account <span className="text-primary">Login</span>
         </h1>
             <form onSubmit={onSubmit}>
-                
                 <div className="form-group">
-                    <label htmlFor="email">Email</label>
-                    <input type="email" name='email' value={email} onChange={onChange}/>
+                    <label htmlFor="email">Email Address</label>
+                    <input type='email' name='email' value={email} onChange={onChange} required/>
                 </div>
                 <div className="form-group">
-                    <label htmlFor="password">Password</label>
-                    <input type="password" name='password' value={password} onChange={onChange}/>
+                    <label htmlFor='password'>Password</label>
+                    <input type='password' name='password' value={password} onChange={onChange} required/>
                 </div>
                 
-                <input type='submit' value='login' className='btn btn-primary btn-block'
-        />
+                <input type='submit' value='login' className='btn btn-primary btn-block'/>
             </form>
         </div>
-    )
-}
+    );
+};
 
 export default Login;
