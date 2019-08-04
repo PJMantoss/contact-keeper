@@ -22,7 +22,7 @@ router.get('/', auth, async (req,res) => {
 // @route  Post api/contacts
 // @desc  Add new contact
 // @access Private
-router.get(
+router.post(
     '/',
     [auth,
     [
@@ -35,7 +35,7 @@ router.get(
         return res.status(400).json({ errors: errors.array() });
     }
 
-    const { name, email, password } = req.body;
+    const { name, email, phone, type } = req.body;
 
     try {
         const newContact = new Contact({
@@ -61,7 +61,7 @@ router.get(
 // @desc   Update contact
 // @access Private
 router.put('/:id', auth, async (req,res) => {
-    const { name, email, password } = req.body;
+    const { name, email, phone, type } = req.body;
 
     //Build Contact object
     const contactFields = {};
@@ -79,7 +79,7 @@ router.put('/:id', auth, async (req,res) => {
             return res.status(401).json({msg: 'Not authorized'});
         }
 
-        contact = await Contact.findOneAndUpdate(req.params.id,
+        contact = await Contact.findByIdAndUpdate(req.params.id,
             { $set: contactFields }, { new: true });
 
             res.json(contact);

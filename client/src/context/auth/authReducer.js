@@ -14,7 +14,7 @@ import {
           case USER_LOADED:
             return{
                 ...state,
-                isAuhenticated: true,
+                isAuthenticated: true,
                 loading: false,
                 user: action.payload
             };

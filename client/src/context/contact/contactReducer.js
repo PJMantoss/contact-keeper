@@ -28,14 +28,15 @@ import {
             case UPDATE_CONTACT:
               return{
                   ...state,
-                  contacts: state.contacts.map(contact => contact._id === action.payload._id),
+                  contacts: state.contacts.map(contact => 
+                  contact._id === action.payload._id ? action.payload : contact),
                   loading: false
               }
           case DELETE_CONTACT:
             return {
                 ...state,
                 contacts: state.contacts.filter(contact => 
-                    contact._id !== action.payload ? action.payload : contact),
+                    contact._id !== action.payload),
                     loading: false
             };
             case CLEAR_CONTACTS:
