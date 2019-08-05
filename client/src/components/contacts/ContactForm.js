@@ -45,7 +45,6 @@ const ContactForm = () => {
       phone: "",
       type: "personal"
       });
-      };
   };
 
   const clearAll = () => {
@@ -112,4 +111,5 @@ const ContactForm = () => {
     </form>
   );
 
+};
 export default ContactForm;
