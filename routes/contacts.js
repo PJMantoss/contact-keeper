@@ -1,7 +1,7 @@
 const express = require('express');
 const router=  express.Router();
 const auth = require('../middleware/auth');
-const { check, validationResult } = require('express-validator/check');
+const { check, validationResult } = require('express-validator');
 
 const User = require('../models/User');
 const Contact = require('../models/Contact');
@@ -13,7 +13,7 @@ router.get('/', auth, async (req,res) => {
     try {
         const contacts = await Contact.find({user: req.user.id}).sort({date: -1});
         res.json(contacts);
-    } catch (error) {
+    } catch (err) {
         console.error(err.message);
         res.status(500).send('Server Error');
     }
@@ -50,7 +50,7 @@ router.post(
 
         res.json(contact);
 
-    } catch (error) {
+    } catch (err) {
         console.error(err.message);
         res.status(500).send('Server Error');
     }
@@ -84,7 +84,7 @@ router.put('/:id', auth, async (req,res) => {
 
             res.json(contact);
 
-    } catch (error) {
+    } catch (err) {
         console.error(err.message);
         res.status(500).send('Server Error');
     }
@@ -107,7 +107,7 @@ router.delete('/:id', auth, async (req,res) => {
 
             res.json({msg: 'Contact Removed'});
 
-    } catch (error) {
+    } catch (err) {
         console.error(err.message);
         res.status(500).send('Server Error');
     }
