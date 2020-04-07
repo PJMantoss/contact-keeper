@@ -6,7 +6,7 @@ const { check, validationResult } = require('express-validator/check');
 const User = require('../models/User');
 require("dotenv").config();
 
-//@route  Post api/users
+//@route  POST api/users
 // @desc  Register a user
 // @access Public
 router.post(

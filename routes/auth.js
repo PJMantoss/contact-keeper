@@ -6,7 +6,7 @@ const auth = require('../middleware/auth');
 const { check, validationResult } = require('express-validator/check');
 
 const User = require('../models/User');
-require("dotenv").config();
+//require("dotenv").config();
 
 // @route  GET api/auth
 // @desc  GET logged in user
