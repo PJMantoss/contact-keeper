@@ -1,19 +1,14 @@
 const express = require('express');
-const connectDB = require('./config/db');
-const path = require('path');
+/*const connectDB = require('./config/db');
+const path = require('path'); */
 
 const app = express();
-
+/*
 // Connect Database
 connectDB();
 
 // Init Middleware
 app.use(express.json({extended: false}));
-
-//Define Routes
-app.use('/api/users', require('./routes/users'));
-app.use('/api/auth', require('./routes/auth'));
-app.use('/api/contacts', require('./routes/contacts'));
 
 // Serve static assets in production
 if (process.env.NODE_ENV === 'production') {
@@ -24,6 +19,14 @@ if (process.env.NODE_ENV === 'production') {
       res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
     );
   }
+*/
+
+app.get('/', (req, res) => res.json({msg: "Welcome to the Contact keeper API..."}));
+
+//Define Routes
+app.use('/api/users', require('./routes/users'));
+app.use('/api/auth', require('./routes/auth'));
+app.use('/api/contacts', require('./routes/contacts'));
 
 const PORT = process.env.PORT || 5000;
 
